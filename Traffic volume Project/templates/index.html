@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Volume Estimation</title>
+    <style>
+        body {
+            background-image: url('BLTemplateLibGK667T25J3jpg.jpg'); /* Using local image */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Traffic Volume Estimation</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <label for="holiday">Holiday:</label>
+            <select id="holiday" name="holiday">
+                <option value="0">Not Holiday</option>
+                <option value="1">Holiday</option>
+            </select>
+
+            <label for="temp">Temperature:</label>
+            <input type="number" name="temp" placeholder="Enter temperature" required>
+
+            <label for="rain">Rain:</label>
+            <input type="number" min="0" name="rain" placeholder="Enter rain value" required>
+
+            <label for="snow">Snow:</label>
+            <input type="number" min="0" name="snow" placeholder="Enter snow value" required>
+
+            <label for="weather">Weather Condition:</label>
+            <select name="weather">
+                <option value="0">Clear</option>
+                <option value="1">Clouds</option>
+                <option value="2">Rain</option>
+                <option value="3">Drizzle</option>
+                <option value="4">Mist</option>
+                <option value="5">Haze</option>
+                <option value="6">Fog</option>
+                <option value="7">Thunderstorm</option>
+                <option value="8">Snow</option>
+                <option value="9">Squall</option>
+                <option value="10">Smoke</option>
+            </select>
+
+            <label for="year">Year:</label>
+            <input type="number" name="year" placeholder="Enter year" required>
+
+            <label for="month">Month:</label>
+            <input type="number" name="month" placeholder="Enter month" required>
+
+            <label for="day">Day:</label>
+            <input type="number" name="day" placeholder="Enter day" required>
+
+            <label for="hours">Hours:</label>
+            <input type="number" name="hours" placeholder="Enter hours" required>
+
+            <label for="minutes">Minutes:</label>
+            <input type="number" name="minutes" placeholder="Enter minutes" required>
+
+            <label for="seconds">Seconds:</label>
+            <input type="number" name="seconds" placeholder="Enter seconds" required>
+
+            <button type="submit" class="btn">Predict</button>
+        </form>
+        <h2>{{ prediction_text }}</h2>
+    </div>
+</body>
+</html>
